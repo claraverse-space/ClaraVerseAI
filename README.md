@@ -481,14 +481,6 @@ Opens a 4-pane terminal with:
 - E2B Service (Python) → `http://localhost:8001`
 - Info panel
 
-### Option 3: Desktop Application
-
-Download native apps for your platform:
-
-- **Windows**: [Download .exe](https://github.com/claraverse-space/ClaraVerse-Scarlet/releases)
-- **macOS**: [Download .dmg](https://github.com/claraverse-space/ClaraVerse-Scarlet/releases)
-- **Linux**: [Download .AppImage](https://github.com/claraverse-space/ClaraVerse-Scarlet/releases)
-
 ---
 
 ## <img src="https://cdn.simpleicons.org/bookstack/0288D1" width="24" height="24" alt="Book"/> Documentation

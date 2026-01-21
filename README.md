@@ -20,6 +20,53 @@
 
 ---
 
+## 🚀 Quick Start
+
+**Install CLI:**
+```bash
+curl -fsSL https://get.claraverse.app | bash
+```
+
+**Start ClaraVerse:**
+```bash
+claraverse init
+```
+
+Open **http://localhost** → Register → Add AI provider → Start chatting!
+
+<details>
+<summary><b>Other options</b></summary>
+
+**Docker (no CLI):**
+```bash
+docker run -d -p 80:80 -p 3001:3001 -v claraverse-data:/data claraverseoss/claraverse:latest
+```
+
+**Clone & Run:**
+```bash
+git clone https://github.com/ClaraVerse/ClaraVerse-OSS.git && cd ClaraVerse-OSS && ./quickstart.sh
+```
+
+</details>
+
+---
+
+## ✨ What's Included
+
+Everything runs locally - no external APIs needed:
+
+| Service | Purpose |
+|---------|---------|
+| **Frontend** | React app on port 80 |
+| **Backend** | Go API on port 3001 |
+| **MongoDB** | Conversations & workflows |
+| **MySQL** | Providers & models |
+| **Redis** | Job scheduling |
+| **SearXNG** | Web search (no API key!) |
+| **E2B** | Code execution (no API key!) |
+
+---
+
 ## <img src="https://cdn.simpleicons.org/starship/DD0B78" width="24" height="24" alt="Star"/> Why ClaraVerse?
 
 **Self-hosting isn't enough.** Most "privacy-focused" chat UIs still store your conversations in MongoDB or PostgreSQL. ClaraVerse goes further with **browser-local storage**—even the server admin can't read your chats.
@@ -36,280 +83,48 @@
 
 > **50,000+ downloads** | The only AI platform where conversations never touch the server—even when self-hosted
 
----
-
-## 🚀 Quick Start (60 Seconds!)
-
-**One command. That's it. Works on Linux, macOS, and Windows.**
-
-### 🐳 Option 1: One-Liner (No Git Required!)
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/ClaraVerse-Scarlet-OSS/main/install.sh | bash
-```
-
-This downloads everything and starts ClaraVerse automatically. Done!
-
-### 📦 Option 2: Clone & Run
-
-**Linux / macOS:**
-```bash
-git clone https://github.com/yourusername/ClaraVerse-Scarlet-OSS.git
-cd ClaraVerse-Scarlet-OSS
-./quickstart.sh
-```
-
-**Windows:**
-```batch
-git clone https://github.com/yourusername/ClaraVerse-Scarlet-OSS.git
-cd ClaraVerse-Scarlet-OSS
-quickstart.bat
-```
-
-### What Just Happened?
-
-The quickstart script automatically:
-- ✅ Checks Docker is installed
-- ✅ Creates `.env` with auto-generated secure keys (ENCRYPTION_MASTER_KEY, JWT_SECRET)
-- ✅ Starts all 7 services (frontend, backend, MongoDB, MySQL, Redis, SearXNG, E2B)
-- ✅ Waits for everything to be healthy
-- ✅ Shows you the URLs to access
-
-**Access ClaraVerse:**
-- Frontend: [http://localhost:80](http://localhost:80)
-- Backend API: [http://localhost:3001](http://localhost:3001)
-- Health Check: [http://localhost:3001/health](http://localhost:3001/health)
-
-### First Steps
-
-1. Open [http://localhost:80](http://localhost:80) in your browser
-2. **Register your account** (first user becomes admin!)
-3. Add your AI provider API keys in Settings
-
-### Version 2.0 - Fully Local! 🎉
-
-No external APIs required for core functionality:
-- ✅ **Local JWT Authentication** - No Supabase required
-- ✅ **E2B Local Docker Mode** - Code execution without E2B API key
-- ✅ **All Users Get Pro Tier** - No payment gateway needed
-- ✅ **Self-Hosted Search** - SearXNG included
-- ✅ **Fully Offline Capable** - Everything runs locally
-
 <details>
-<summary><b>📋 Advanced Setup (Manual Installation)</b></summary>
+<summary><b>📋 Advanced Setup & Troubleshooting</b></summary>
 
 ### Prerequisites
 - Docker & Docker Compose installed
 - 4GB RAM minimum (8GB recommended)
-- Git
 
-### Manual Installation Steps
+### Manual Installation
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/yourusername/ClaraVerse-Scarlet-OSS.git
-cd ClaraVerse-Scarlet-OSS
+# 1. Clone
+git clone https://github.com/ClaraVerse/ClaraVerse-OSS.git
+cd ClaraVerse-OSS
 
-# 2. Create .env file
+# 2. Configure
 cp .env.default .env
 
-# 3. Generate secure keys
-openssl rand -hex 32  # ENCRYPTION_MASTER_KEY
-openssl rand -hex 64  # JWT_SECRET
-
-# 4. Edit .env and replace auto-generated-on-first-run with the keys above
-
-# 5. Start all services
+# 3. Start
 docker compose up -d
 
-# 6. Check status
+# 4. Verify
 docker compose ps
 ```
-
-### What's Running?
-- **Frontend** (React + Nginx): http://localhost:80
-- **Backend** (Go API): http://localhost:3001
-- **MongoDB**: Conversations & workflows
-- **MySQL**: Provider & model data
-- **Redis**: Job scheduling
-- **E2B Service**: Local Python code execution (no API key!)
-- **SearXNG**: Self-hosted web search
 
 ### Troubleshooting
 
-Run diagnostics:
 ```bash
+# Run diagnostics
 ./diagnose.sh     # Linux/Mac
 diagnose.bat      # Windows
-```
 
-View logs:
-```bash
-docker compose logs -f
-docker compose logs -f backend  # Just one service
-```
+# View logs
+docker compose logs -f backend
 
-Stop services:
-```bash
-docker compose down
+# Restart
+docker compose restart
+
+# Fresh start
+docker compose down -v && docker compose up -d
 ```
 
 </details>
-
----
-
-## 🌐 Offline Capabilities & Dependencies
-
-**ClaraVerse v2.0 is designed to run completely offline for core functionality!**
-
-### ✅ Fully Local (No External APIs)
-
-| Component | Status | Description |
-|-----------|--------|-------------|
-| **Authentication** | ✅ **100% Local** | JWT with Argon2id (replaced Supabase) |
-| **Code Execution** | ✅ **100% Local** | E2B in Docker mode (no API key needed) |
-| **Database** | ✅ **100% Local** | MongoDB + MySQL + Redis (all containerized) |
-| **Search Engine** | ✅ **100% Local** | SearXNG self-hosted |
-| **Payments** | ✅ **Removed** | All users get Pro tier by default |
-| **CAPTCHA** | ✅ **Removed** | Rate limiting only |
-
-### ⚠️ Optional External Services
-
-| Service | Required? | Purpose | Offline Alternative |
-|---------|-----------|---------|---------------------|
-| **AI Model APIs** | For chat | OpenAI, Anthropic, etc. | Use local LLM (Ollama, LM Studio) |
-| **Gmail Integration** | Optional | Email access in workflows | Can be disabled |
-| **Google Sheets** | Optional | Spreadsheet integration | Can be disabled |
-
-### 📦 Required Configuration
-
-**Essential environment variables:**
-- `ENCRYPTION_MASTER_KEY` - For encrypting sensitive data
-- `JWT_SECRET` - For authentication tokens
-
-Generate these securely:
-```bash
-# Generate encryption key (32 bytes)
-openssl rand -hex 32
-
-# Generate JWT secret (64 bytes)
-openssl rand -hex 64
-```
-
-### 🧪 Test Your Installation
-
-Run the automated test suite:
-
-```bash
-# Run comprehensive system tests
-./test-system.sh
-
-# Or test individual endpoints manually:
-
-# 1. Health check
-curl http://localhost:3001/health
-
-# 2. Create a test user
-printf '{"email":"test@example.com","password":"Test1234@"}' | \
-  curl -X POST http://localhost:3001/api/auth/register \
-  -H "Content-Type: application/json" -d @-
-
-# 3. Check E2B code execution (local mode)
-docker compose logs e2b-service | grep "LOCAL Docker mode"
-
-# 4. Verify all services are healthy
-docker compose ps
-```
-
-### 🔧 Running the System
-
-**Start All Services:**
-```bash
-# Start in detached mode (background)
-docker-compose up -d
-
-# View logs (follow mode)
-docker-compose logs -f
-
-# Stop all services
-docker-compose down
-
-# Stop and remove volumes (fresh start)
-docker-compose down -v
-```
-
-**Individual Service Management:**
-```bash
-# Restart specific service
-docker-compose restart backend
-
-# View logs for specific service
-docker-compose logs backend --tail 100
-
-# Rebuild a service
-docker-compose build --no-cache backend
-docker-compose up -d backend
-```
-
-### 📊 Service Status Check
-
-All services should show `healthy` status:
-```bash
-docker compose ps
-
-# Expected output:
-# claraverse-backend   ... Up (healthy)
-# claraverse-e2b       ... Up (healthy)
-# claraverse-mongodb   ... Up (healthy)
-# claraverse-mysql     ... Up (healthy)
-# claraverse-redis     ... Up (healthy)
-# claraverse-searxng   ... Up (healthy)
-```
-
-### 🚀 Access Points
-
-Once running, access:
-- **Backend API**: http://localhost:3001
-- **Frontend UI**: http://localhost:5173 (when frontend is started)
-- **API Health**: http://localhost:3001/health
-- **MongoDB**: localhost:27017
-- **MySQL**: localhost:3306
-- **Redis**: localhost:6379
-
-### 🔐 First-Time Setup
-
-1. **Start services**: `docker-compose up -d`
-2. **Wait for healthy status**: `docker compose ps` (all services should be healthy)
-3. **Create your first account** (automatically becomes admin):
-```bash
-printf '{"email":"admin@localhost","password":"Admin123@"}' | \
-  curl -X POST http://localhost:3001/api/auth/register \
-  -H "Content-Type: application/json" -d @-
-```
-**Note:** The first user to register automatically gets admin privileges. Subsequent users get standard user role.
-
-4. **Start frontend**: `docker-compose up -d frontend` (or run locally)
-5. **Configure AI providers** in the admin panel
-
-### 📝 Important Notes
-
-**Password Requirements:**
-- Minimum 8 characters
-- At least 1 uppercase letter
-- At least 1 lowercase letter
-- At least 1 number
-- At least 1 special character (!@#$%^&*)
-
-**Known Issues (v2.0):**
-- E2B health check shows minor error (doesn't affect code execution)
-- Frontend takes ~30 seconds to become healthy
-
-**Can Run Completely Offline?**
-- ✅ **YES** for authentication, database, code execution, search
-- ⚠️ **Requires AI provider** for chat (can use local LLM like Ollama)
-- ⚠️ **Requires internet** for AI API calls (unless using local models)
-
-For complete offline capability status, see [OFFLINE_STATUS.md](OFFLINE_STATUS.md)
 
 ---
 
@@ -488,57 +303,6 @@ Most "privacy-focused" AI tools sacrifice usability for security. Open WebUI and
 - **Enterprises**: Deploy infrastructure that complies with strictest data sovereignty requirements (GDPR, HIPAA, SOC2)
 
 > **50,000+ downloads worldwide** | Join developers and privacy advocates who refuse to compromise
-
----
-
-## <img src="https://cdn.simpleicons.org/rocketdotchat/FF6B6B" width="24" height="24" alt="Rocket"/> Quick Start
-
-### Option 1: Docker (Recommended)
-
-Get started in under 2 minutes:
-
-```bash
-# Clone the repository
-git clone https://github.com/claraverse-space/ClaraVerse-Scarlet.git
-cd ClaraVerse-Scarlet
-
-# Configure .env with your secrets
-# ENCRYPTION_MASTER_KEY and JWT_SECRET required
-
-# Start all services
-docker compose up -d
-
-# Access backend at http://localhost:3001
-# Start frontend separately or access at http://localhost:5173
-```
-
-**What's Included:**
-- ✅ Frontend (React + TypeScript)
-- ✅ Backend (Go API + WebSocket)
-- ✅ MongoDB for data persistence
-- ✅ Redis for job scheduling
-- ✅ SearXNG for web search
-- ✅ E2B for code execution
-
-### Option 2: One-Click Development Environment
-
-Perfect for contributors and developers:
-
-```bash
-# Prerequisites: Go 1.24+, Node.js 20+, Python 3.11+, tmux
-
-# Install dependencies
-make install
-
-# Launch all services in tmux
-./dev.sh
-```
-
-Opens a 4-pane terminal with:
-- Backend (Go) → `http://localhost:3001`
-- Frontend (Vite) → `http://localhost:5173`
-- E2B Service (Python) → `http://localhost:8001`
-- Info panel
 
 ---
 

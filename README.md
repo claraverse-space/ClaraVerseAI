@@ -1,3 +1,15 @@
+# ⚠️ This Repository Has Moved
+
+**This codebase has been migrated to [claraverse-space/ClaraVerse](https://github.com/claraverse-space/ClaraVerse).**
+
+Please visit the new repository for the latest updates, issues, and contributions.
+
+---
+
+*Looking for the Desktop Electron app? It has moved to [claraverse-space/ClaraVerse-Desktop](https://github.com/claraverse-space/ClaraVerse-Desktop).*
+
+---
+
 <div align="center">
 
 <img src="docs/images/image-banner.png" alt="Claraverse - Your Private AI Workspace" width="800" />
